@@ -1,0 +1,5 @@
+.board {
+	background-color:rgba(0, 121, 191, 1);
+	display: flex;
+	flex-wrap: wrap;
+}

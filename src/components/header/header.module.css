@@ -1,0 +1,94 @@
+.header {
+	background: rgba(0, 103, 163, 1);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	padding: 0 16px;
+}
+
+.logo {
+	width: 35px;
+	margin-right: 15px;
+}
+
+.wrapper {
+	margin-left: auto;
+	/* margin-right: 15px; */
+}
+
+.molu {
+	display: flex;
+	flex-direction: column;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	width: 134px;
+	color: rgba(0, 0, 0, 1);
+	font-size: 14px;
+	line-height: 16.5px;
+	position: absolute;
+	right: 16px;
+}
+
+.moluOption {
+	padding: 7px;
+	border-radius: 5px;
+}
+
+.moluOption:hover {
+	background-color: #DEDEDE;
+	cursor: pointer;
+}
+
+.PersonalAccount {
+	background: rgba(0, 103, 163, 1);
+	display: flex;
+	margin-left: auto;
+	/* margin-right: 15px; */
+	border: none;
+	cursor: pointer;
+}
+
+.ArrowDown, ArrowUp {
+	width: 12px;
+}
+
+.PersonalAccountPhoto {
+	background-color: #fff;
+	display: flex;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	justify-content: center;
+}
+
+.UserPhoto {
+	color: #000;
+	width: 26.2px;
+	height: 33.45px;
+	align-self: end;
+}
+
+.arrow {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen  and (min-width: 375px) and (max-width: 487px) {
+	.header {
+		padding: 5px 0px;
+
+	}
+	.logo {
+		display: none;
+	}
+	.title {
+		display: none;
+	}
+	.arrow {
+		width: 14px;
+		margin-left: 7px;
+	}
+}
