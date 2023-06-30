@@ -10,20 +10,16 @@ function Main ({ tasks, setTasks }) {
 	return (
 		<main className={css.main} >
 			<Routes>
-				<Route exact path={`/`}>
-					<Board 
-					tasks={tasks} 
-					setTasks={setTasks}
-					/>
-				</Route>
-				<Route path={`/tasks/:taskId`}>
-					<TaskDetail
-						tasks={tasks} 
-						setTasks={setTasks}
-						/>
-				</Route>
+				<Route 
+					exact 
+					path="/"
+					element={<Board tasks={tasks} setTasks={setTasks} />}
+				/>
+				<Route
+					path="/tasks/:taskId"
+					element={<TaskDetail	tasks={tasks}	setTasks={setTasks}/>}
+				/>
 			</Routes>
-
 		</main>
 	)
 }

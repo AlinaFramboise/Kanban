@@ -1,6 +1,5 @@
 import css from './TaskDetail.module.css'
 import { useLocation } from 'react-router-dom';
-import {LIST_TYPES, LIST_COPY, LIST_COLORS } from 'config';
 import { useState } from 'react'
 
 

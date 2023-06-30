@@ -1,5 +1,4 @@
 import css from './header.module.css'
-import PersonalAccount from './src/components/personalAccount/PersonalAccount'
 
 const Header = () => {
 	return (
