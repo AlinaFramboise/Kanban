@@ -1,86 +1,55 @@
 .wrapper {
-	background: #fff;
-	border-radius: 5px;
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	height: 50vh;
-	margin: 20px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 25px 30px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 70vh;
 }
 
 .header {
-	display: flex;
-	justify-content: space-between;
-	/* align-items: center; */
-}
-
-.title {
-	margin: 0;
-	font-size: 24px;
-	line-height: 28px;
-	display: inline-flex;
+    display: flex;
+    justify-content: space-between;
 }
 
 .description {
-	font-size: 18px;
-	line-height: 21px;
-	margin-top: 35px;
+    width: 100%;
+    height: 55vh;
+    resize: none;
+    padding: 0;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: solid 1px white;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
 }
 
-.createdAt {
-	color: #737373;
-	font-style: italic;
+textarea:focus {
+    outline: none;
 }
 
-.status {
-	color: #fff;
-	background: #465571;
-	font-weight: bold;
-	margin: 0;
-	padding: 8px 20px;
-	border-radius: 20px;
+.btnClose {
+    background-color: transparent;
+    border: none;
+    width: 25px;
+    height: 25px;
+    color: black;
+    text-decoration: none;
 }
 
-.label {
-	margin-bottom: 10px;
+.save {
+    background-color: #0079BF;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
-.select {
-	padding: 8px;
-	border-radius: 5px;
-	font-size: 18px;
-	line-height: 21px;
-}
-
-.optionS {
-	padding: 8px;
-	border-radius: 5px;
-	height: 45px;
-	/* background-color: #DEDEDE; */
-}
-
-select.decorated option:hover {
-    box-shadow: 0 0 10px 100px #1882A8 inset;
-	background-color: #DEDEDE;
-}
-
-.homeLink {
-	display: flex;
-	text-decoration: none;
-	color: #737373;
-	font-size: 32px;
-	margin-top: -16px;
-}
-
-
-.homeLink:hover {
-	color: #DEDEDE;
-}
-
-.emptyState {
-	text-align: center;
-}
-
-.emptyStateIcon {
-	width: 200px;
+.save:hover {
+    text-decoration: underline;
 }

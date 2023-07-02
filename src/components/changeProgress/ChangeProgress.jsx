@@ -1,81 +1,55 @@
 import React from "react"
 import css from '../task-detail/TaskDetail.module.css'
-import { LIST_TYPES, LIST_COPY, LIST_COLORS } from '../../config.js'
-
-function ChangeProgress({tasks, setTasks, type, lists, title, setChange}) {
+import { LIST_TYPES } from '../../config';
 
 
-    function handleChange(e) {
-        setTasks(tasks.map(task => {
-            if (e.target.value === task.title) {
-                return {...task, status: type};
-            } else {
-                return task;
+function ChangeProgress(props) {
+    const { noFiltredTasks, type, setTasks, handleSelectVisible } = props
+
+     const handleSelectChange = (e) => {
+        const updatedTask = noFiltredTasks.map(task => {
+            if (task.id === e.target.value) {
+                return { ...task, status: type }
+            } 
+            return task
+        })
+        setTasks(updatedTask)
+        handleSelectVisible(false)
+     }
+
+    return (
+        <select key={noFiltredTasks} className={css.select} onChange={handleSelectChange}>
+
+            <option className={css.chooseTask}>choose task</option>
+        
+            {type === LIST_TYPES.READY && (
+                noFiltredTasks.filter(task => task.status === 'backlog').map(tasks => {
+                    return (
+                        <option className={css.option} key={tasks.id} value={tasks.id}>{tasks.title}</option>
+                    )}
+                ))
             }
-        }));
-        setChange(false)
-	}
 
-    if (type === LIST_TYPES.READY) {
-        return (<>
-            <select onChange={handleChange} className={css.select}>
-            <option value={null}>
-            </option>
-            {tasks.map(task => {
-                if (task.status === lists[0]) {
-                    return (<>
-                        <option value={task.title} className={css.optionS}>
-                            {task.title}
-                        </option>
-                    </>
-                    )
-                }
-            })}
-            </select>
-        </>
-        )
-    }
+            {type === LIST_TYPES.IN_PROGRESS && (
+                noFiltredTasks.filter(task => task.status === 'ready').map(tasks => {
+                    return (
+                        <option className={css.option} key={tasks.id} value={tasks.id}>{tasks.title}</option>
+                    )}
+                ))
+            }
 
-    if (type === LIST_TYPES.IN_PROGRESS) {
-        return (<>
-            <select value={type} onChange={handleChange} className={css.select}>
-            <option value={null}> 
-            </option>
-            {tasks.map(task => {
-                if (task.status === lists[1]) {
-                    return (<>
-                        <option value={task.title} className={css.optionS}>
-                            {task.title}
-                        </option>
-                    </>
-                    )
-                }
-            })}
-            </select>
-        </>
-        )
-    }
-    
-    if (type === LIST_TYPES.FINISHED) {
-        return (<>
-            <select value={type} onChange={handleChange} className={css.select}>
-            <option value={null} selected={true} label=''>
-            </option>
-            {tasks.map(task => {
-                if (task.status === lists[2]) {
-                    return (<>
-                        <option value={task.title} className={css.optionS}>
-                            {task.title}
-                        </option>
-                        </>
-                    )
-                }
-            })}
-            </select>
-        </>
-        )
-    }
+            {type === LIST_TYPES.FINISHED && (
+                noFiltredTasks.filter(task => task.status === 'inProgress').map(tasks => {
+                    return (
+                        <option className={css.option} key={tasks.id} value={tasks.id}>{tasks.title}</option>
+                    )}
+                ))
+            }
+        
+        </select>
+
+    )
 }
 
 
-export default ChangeProgress
+export default ChangeProgress;

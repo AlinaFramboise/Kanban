@@ -1,43 +1,37 @@
-import { useState } from 'react'
 import css from './Forms.module.css'
+import { useState } from 'react'
 
-const FormAddNewTask = props => {
-	const {addNewTask, setFormVisible} = props
-	const [values, setValues] = useState({
-		title: '',
-		description: ''
-	})
+function FormAddNewTask (props) {
 
-	function handleSubmit(e) {
+    const {formSubmit} = props
+    const [values, setValues] = useState({
+		title: '' 
+    })
+
+    const handleSubmit = e => {
 		e.preventDefault()
 		if (values.title) {
-			addNewTask(values.title, values.description)
-		} else {
-			alert('title is req')
+			formSubmit(values.title)
 		}
-		setFormVisible(false)
 	}
 
-	function handleChange(e) {
-		let fieldName = e.target.name
+     const handleChange = e => {
+		const fieldName = e.target.name
 		setValues({...values, [fieldName]: e.target.value})
 	}
 
-	return (
-		<form className={css.form} onSubmit={handleSubmit}>
-			<input
-				className={css.input}
-				id='taskTitle'
-				name='title'
-				type='text'
-				placeholder='Enter task title'
-				value={values.title}
-				onChange={handleChange}
-			/>
-			
-			<button className={css.submit} type='submit'>Submit</button>
-		</form>
-	)
+    return (
+        <form onSubmit={handleSubmit}>
+            <input className={css.card} name='title' placeholder='add new task' type='text' value={values.title} onChange={handleChange}/>
+
+            {values.title ?  (
+                <button className={css.submit} type='submit'>Submit</button>
+            ) : (
+                <p className={css.valid}>enter tasks..</p>
+            )}
+            
+        </form>
+    )
 }
 
-export default FormAddNewTask
+export default FormAddNewTask;

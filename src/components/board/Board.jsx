@@ -1,7 +1,7 @@
 import { LIST_TYPES, LIST_COPY} from '../../config.js'
 import List from '../list/List'
 import css from './Board.module.css'
-import { v4 as uuid } from 'react-uuid';
+import uuid from "react-uuid";
 
 const Board = props => {
 	const {tasks, setTasks} = props
