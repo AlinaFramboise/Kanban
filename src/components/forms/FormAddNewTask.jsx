@@ -1,37 +1,51 @@
 import css from './Forms.module.css'
-import { useState } from 'react'
+import {useState} from 'react'
 
-function FormAddNewTask (props) {
+function FormAddNewTask(props) {
 
-    const {formSubmit} = props
-    const [values, setValues] = useState({
-		title: '' 
-    })
+    const {addTask, setFormVisible} = props
+    const [title, setTitle] = useState("")
 
-    const handleSubmit = e => {
-		e.preventDefault()
-		if (values.title) {
-			formSubmit(values.title)
-		}
-	}
+    const onSubmit = () => {
+        if (title.trim() === "") {
+            return;
+        }
 
-     const handleChange = e => {
-		const fieldName = e.target.name
-		setValues({...values, [fieldName]: e.target.value})
-	}
+        addTask(title);
+        setFormVisible();
+    }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input className={css.card} name='title' placeholder='add new task' type='text' value={values.title} onChange={handleChange}/>
+    const onCancel = () => {
+        setFormVisible();
+    }
 
-            {values.title ?  (
-                <button className={css.submit} type='submit'>Submit</button>
-            ) : (
-                <p className={css.valid}>enter tasks..</p>
-            )}
-            
-        </form>
-    )
+    const handleChange = ({target: {value}}) => {
+        setTitle(value);
+    }
+
+    return <div className={css.form}>
+        <input
+            name='Название'
+            placeholder='Введите название задачи'
+            value={title}
+            onChange={handleChange}
+        />
+        <div className={css.buttons}>
+            <button
+                className={css.submit}
+                onClick={onSubmit}
+                disabled={title.trim() === ""}
+            >
+                Сохранить
+            </button>
+            <button
+                className={css.cancel}
+                onClick={onCancel}
+            >
+                Отменить
+            </button>
+        </div>
+    </div>
 }
 
 export default FormAddNewTask;

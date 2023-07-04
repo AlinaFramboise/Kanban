@@ -1,5 +1,8 @@
 .board {
 	background-color:rgba(0, 121, 191, 1);
 	display: flex;
-	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	overflow: hidden;
+	height: 100%;
 }

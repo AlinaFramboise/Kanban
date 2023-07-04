@@ -1,11 +1,10 @@
 .main {
-	.main {
-		background: rgba(0, 121, 191, 1);
-		padding: 20px;
-		flex-grow: 1;
-	}
-	
+    background: rgba(0, 121, 191, 1);
+    padding: 20px;
+    flex: 1;
+    overflow: hidden;
 }
+
 .column {
     background-color: #EBECF0;
     border-radius: 10px;

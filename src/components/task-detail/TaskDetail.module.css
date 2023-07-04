@@ -53,3 +53,20 @@ textarea:focus {
 .save:hover {
     text-decoration: underline;
 }
+
+.form {
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit {
+    background-color: #0079BF;
+}
+
+.cancel {
+    background-color: #002cbb;
+}

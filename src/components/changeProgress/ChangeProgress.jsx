@@ -1,54 +1,72 @@
-import React from "react"
+import React, {useState} from "react"
 import css from '../task-detail/TaskDetail.module.css'
-import { LIST_TYPES } from '../../config';
 
 
 function ChangeProgress(props) {
-    const { noFiltredTasks, type, setTasks, handleSelectVisible } = props
+    const {tasks, type, updateTask, setIsChangeVisible} = props;
+    const initialOption = {value: "", title: "Выберите задачу"};
+    const [selectedOption, setSelectedOption] = useState("");
 
-     const handleSelectChange = (e) => {
-        const updatedTask = noFiltredTasks.map(task => {
-            if (task.id === e.target.value) {
-                return { ...task, status: type }
-            } 
-            return task
-        })
-        setTasks(updatedTask)
-        handleSelectVisible(false)
-     }
+    // const handleSelectChange = (e) => {
+    //     const updatedTask = noFiltredTasks.map(task => {
+    //         if (task.id === e.target.value) {
+    //             return {...task, status: type}
+    //         }
+    //         return task
+    //     })
+    //     setTasks(updatedTask)
+    //     handleSelectVisible(false)
+    // }
 
-    return (
-        <select key={noFiltredTasks} className={css.select} onChange={handleSelectChange}>
+    const onChangeTask = ({target: {value}}) => {
+        setSelectedOption(value);
+    }
 
-            <option className={css.chooseTask}>choose task</option>
-        
-            {type === LIST_TYPES.READY && (
-                noFiltredTasks.filter(task => task.status === 'backlog').map(tasks => {
-                    return (
-                        <option className={css.option} key={tasks.id} value={tasks.id}>{tasks.title}</option>
-                    )}
-                ))
-            }
+    const onSubmit = () => {
+        updateTask(selectedOption, type);
+        setIsChangeVisible();
+    }
 
-            {type === LIST_TYPES.IN_PROGRESS && (
-                noFiltredTasks.filter(task => task.status === 'ready').map(tasks => {
-                    return (
-                        <option className={css.option} key={tasks.id} value={tasks.id}>{tasks.title}</option>
-                    )}
-                ))
-            }
+    const onCancel = () => {
+        setIsChangeVisible();
+    }
 
-            {type === LIST_TYPES.FINISHED && (
-                noFiltredTasks.filter(task => task.status === 'inProgress').map(tasks => {
-                    return (
-                        <option className={css.option} key={tasks.id} value={tasks.id}>{tasks.title}</option>
-                    )}
-                ))
-            }
-        
+    const options = [
+        initialOption,
+        ...tasks.filter(task => task.status !== type).map(task => ({
+            value: task.id,
+            title: task.title
+        }))
+    ]
+
+    return <div className={css.form}>
+        <select
+            defaultValue={selectedOption}
+            onChange={onChangeTask}
+        >
+            {options.map((option, idx) => <option
+                key={idx}
+                value={option.value}
+            >
+                {option.title}
+            </option>)}
         </select>
-
-    )
+        <div className={css.buttons}>
+            <button
+                className={css.submit}
+                onClick={onSubmit}
+                disabled={selectedOption === ""}
+            >
+                Сохранить
+            </button>
+            <button
+                className={css.cancel}
+                onClick={onCancel}
+            >
+                Отменить
+            </button>
+        </div>
+    </div>
 }
 
 
